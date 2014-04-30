@@ -11,6 +11,7 @@ angular.module('volusionApp', [
     'ui.router',
     'seo',
     'services.config',
+    require('../bower_components/vn-meta-tags').name,
     require('../bower_components/vn-bem').name,
     // volusion modules
     'volusion.controllers',
