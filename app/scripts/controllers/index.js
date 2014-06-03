@@ -27,6 +27,14 @@ angular.module('volusion.controllers').controller('IndexCtrl', [
       }
     };
 
+    $rootScope.viewCart = function () {
+      if ($rootScope.isInDesktopMode) {
+        return '/shoppingcart.asp';
+      } else {
+        return '/checkout.asp';
+      }
+    };
+
     this.getConfig = function (callbackFn) {
       // Config
       api.config.get(tokenGenerator.getCacheBustingToken()).then(function (response) {
