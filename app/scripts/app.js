@@ -4,7 +4,7 @@ var angular = require('angular');
 
 angular.module('volusion.controllers', ['ngSanitize', 'ui.router', 'volusion.services']);
 angular.module('volusion.directives', []);
-angular.module('volusion.filters', []);
+angular.module('volusion.filters', ['volusion.services']);
 angular.module('volusion.services', ['ngCookies', 'ngResource', 'pascalprecht.translate', 'services.config']);
 
 angular.module('volusionApp', [
@@ -126,7 +126,7 @@ angular.module('volusionApp')
         }
       });
   })
-  .run(function($templateCache) {
+  .run(function($templateCache, $rootScope, cacheBustFilter) {
     $templateCache.put('views/i18n.html', require('./views/i18n.html'));
     $templateCache.put('views/home.html', require('./views/home.html'));
     $templateCache.put('views/style-guide.html', require('./views/style-guide.html'));
@@ -134,4 +134,5 @@ angular.module('volusionApp')
     $templateCache.put('views/contact.html', require('./views/contact.html'));
     $templateCache.put('views/category.html', require('./views/category.html'));
     $templateCache.put('views/product.html', require('./views/product.html'));
+    $rootScope.overridesCSS = cacheBustFilter('/styles/overrides.css');
   });
