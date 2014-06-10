@@ -126,7 +126,14 @@ angular.module('volusionApp')
         }
       });
   })
-  .run(function($templateCache, $rootScope, cacheBustFilter) {
+  .run(function($templateCache, $rootScope, cacheBustFilter, $window) {
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      event.preventDefault();
+      if (error.status === 404) {
+        $window.location.replace('/404.html');
+      }
+    });
+
     $templateCache.put('views/i18n.html', require('./views/i18n.html'));
     $templateCache.put('views/home.html', require('./views/home.html'));
     $templateCache.put('views/style-guide.html', require('./views/style-guide.html'));
