@@ -98,6 +98,21 @@ angular.module('volusionApp')
             return translate.addParts('contact');
           }]
         }
+      })
+      .state('i18n.articles', {
+        url: '/:slug',
+        controller: 'ArticleCtrl',
+        template: '<article class="container" data-ng-include="templateUrl"></article>',
+        resolve: {
+          article: ['api', '$stateParams', '$templateCache',
+            function(api, $stateParams, $templateCache) {
+              return api.articles.get({ slug: $stateParams.slug })
+                .then(function(data) {
+                  $templateCache.put('article', data.data.body);
+                });
+            }
+          ]
+        }
       });
   })
   .run(function($templateCache, $rootScope, cacheBustFilter, $window) {
