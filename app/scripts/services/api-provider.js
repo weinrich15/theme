@@ -161,4 +161,7 @@ angular.module('volusion.services')
   .provider('api', ApiProvider)
   .config(['apiProvider', 'config', function(apiProvider, config){
     apiProvider.setBaseRoute(config.ENV.API_URL);
+
+    apiProvider.endpoint('articles').
+      route('/articles/:slug');
   }]);
