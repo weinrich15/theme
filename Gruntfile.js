@@ -344,7 +344,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'web.config',
             '*.html',
-            'bower_components/**',
+            'bower_components/angular-i18n/angular-locale_*.js',
             'images/**/*.{gif,jpeg,jpg,png,svg,webp}',
             'fonts/*',
             'translations/{,*/}*.json',
