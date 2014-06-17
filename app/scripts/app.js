@@ -105,12 +105,9 @@ angular.module('volusionApp')
         controller: 'ArticleCtrl',
         template: '<article class="container" data-ng-include="templateUrl"></article>',
         resolve: {
-          article: ['api', '$stateParams', '$templateCache',
-            function(api, $stateParams, $templateCache) {
-              return api.articles.get({ slug: $stateParams.slug })
-                .then(function(data) {
-                  $templateCache.put('article', data.data.body);
-                });
+          article: ['api', '$stateParams',
+            function(api, $stateParams) {
+              return api.articles.get({ slug: $stateParams.slug });
             }
           ]
         }

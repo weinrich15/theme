@@ -1,10 +1,19 @@
 'use strict';
 
 angular.module('volusion.controllers').controller('ArticleCtrl', [
+  '$rootScope',
   '$scope',
+  'article',
+  '$templateCache',
   function(
-    $scope) {
-
+    $rootScope,
+    $scope,
+    article,
+    $templateCache
+  ) {
+    article = $scope.article = article.data;
+    $rootScope.seo = angular.extend($rootScope.seo || {}, article.seo);
+    $templateCache.put('article', article.body);
     $scope.templateUrl = 'article';
   }
 ]);
