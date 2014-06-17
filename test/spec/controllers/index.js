@@ -53,6 +53,6 @@ describe('Controller: IndexCtrl', function() {
   });
 
   it('assigns seo data from the config api response to the rootscope', function() {
-    expect(rootScope.seo).to.deep.equal(response.data.seo);
+    expect(scope.seo).to.deep.equal(response.data.seo);
   });
 });
