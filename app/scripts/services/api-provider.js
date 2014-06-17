@@ -162,12 +162,14 @@ angular.module('volusion.services')
   .config(['apiProvider', 'config', function(apiProvider, config){
     apiProvider.setBaseRoute(config.ENV.API_URL);
 
+    apiProvider.endpoint('config').
+      route('/config');
+    apiProvider.endpoint('articles').
+      route('/articles/:slug');
     apiProvider.endpoint('products').
       route('/products/:code');
     apiProvider.endpoint('categories').
       route('/categories/:id');
-    apiProvider.endpoint('config').
-      route('/config');
     apiProvider.endpoint('carts').
       route('/carts');
 

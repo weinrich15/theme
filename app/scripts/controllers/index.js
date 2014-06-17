@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('volusion.controllers').controller('IndexCtrl', [
+  '$rootScope',
   '$scope',
   '$state',
   'api',
-  '$rootScope',
   'tokenGenerator',
   function(
+    $rootScope,
     $scope,
     $state,
     api,
-    $rootScope,
-    tokenGenerator) {
+    tokenGenerator
+  ) {
 
     $rootScope.seo = {};
 
@@ -39,7 +40,7 @@ angular.module('volusion.controllers').controller('IndexCtrl', [
       // Config
       api.config.get(tokenGenerator.getCacheBustingToken()).then(function (response) {
         $scope.config = response.data;
-        angular.extend($rootScope.seo, $scope.config.seo);
+        $rootScope.seo = $rootScope.seo || $scope.config.seo;
 
         // TODO: REMOVE
         console.log('Config: ', response.data);

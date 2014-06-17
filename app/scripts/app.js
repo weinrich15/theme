@@ -11,6 +11,7 @@ angular.module('volusionApp', [
     'ui.router',
     'seo',
     'services.config',
+    require('../bower_components/vn-meta-tags').name,
     require('../bower_components/vn-bem').name,
     // volusion modules
     'volusion.controllers',
@@ -97,6 +98,18 @@ angular.module('volusionApp')
           translations: ['translate', function(translate) {
             return translate.addParts('contact');
           }]
+        }
+      })
+      .state('i18n.articles', {
+        url: '/:slug',
+        controller: 'ArticleCtrl',
+        template: '<article class="container" data-ng-include="templateUrl"></article>',
+        resolve: {
+          article: ['api', '$stateParams',
+            function(api, $stateParams) {
+              return api.articles.get({ slug: $stateParams.slug });
+            }
+          ]
         }
       })
       .state('i18n.category', {
