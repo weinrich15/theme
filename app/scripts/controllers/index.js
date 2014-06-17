@@ -19,13 +19,13 @@ angular.module('volusion.controllers').controller('IndexCtrl', [
     });
 
     // Config
-    api.config.get().then(function (response) {
-        $scope.config = response.data;
-        $rootScope.seo = $rootScope.seo || $scope.config.seo;
-        // TODO: REMOVE
-        console.log('Config: ', response.data);
-      }, function (error) {
-        console.log('Error: ', error);
-      });
+    api.config.get().then(function(response) {
+      $scope.config = response.data;
+      $rootScope.seo = $rootScope.seo || $scope.config.seo;
+      // TODO: REMOVE
+      console.log('Config: ', response.data);
+    }, function(error) {
+      console.log('Error: ', error);
+    });
   }
 ]);
