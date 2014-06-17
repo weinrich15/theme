@@ -17,7 +17,8 @@
     "angular-ui-router": "~0.2.10",
     "bootstrap-sass-official": "~3.1.0",
     "vn-bem": "~0.0.1",
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "vn-meta-tags": "~0.0.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.9",

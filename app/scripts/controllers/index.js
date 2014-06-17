@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('volusion.controllers').controller('IndexCtrl', [
+  '$rootScope',
   '$scope',
   '$state',
+  'api',
   function(
+    $rootScope,
     $scope,
-    $state) {
+    $state,
+    api
+  ) {
 
     $scope.$on('$stateChangeSuccess', function(event, toState) {
       if (toState.name === 'i18n') {
@@ -13,5 +18,14 @@ angular.module('volusion.controllers').controller('IndexCtrl', [
       }
     });
 
+    // Config
+    api.config.get().then(function(response) {
+      $scope.config = response.data;
+      $rootScope.seo = $rootScope.seo || $scope.config.seo;
+      // TODO: REMOVE
+      console.log('Config: ', response.data);
+    }, function(error) {
+      console.log('Error: ', error);
+    });
   }
 ]);
