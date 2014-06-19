@@ -1,13 +1,12 @@
 'use strict';
 
-angular.module('volusion.directives').directive('legacyLink', ['$window', function($window) {
+angular.module('volusion.directives').directive('legacyLink', [function() {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-      element.attr('href', attrs.legacyLink);
-      element.on('click', function(e) {
-        e.preventDefault();
-        $window.location.assign(this.href);
+      element.attr({
+        href: attrs.legacyLink,
+        onclick: 'return !!window.location.assign(this.href)'
       });
     }
   };
