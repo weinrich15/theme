@@ -6,24 +6,28 @@ describe('Directive: legacyLink', function() {
   // load the directive's module
   beforeEach(module('volusion.directives'));
 
-  var element;
   var scope;
+  var compile;
+
+  function createLegacyLink(attrs) {
+    var element = angular.element('<a/>').attr(angular.extend({
+      'data-legacy-link': '/foo'
+    }, attrs || {}));
+    return compile(element)(scope);
+  }
 
   beforeEach(inject(function($rootScope, $compile) {
     scope = $rootScope.$new();
-    element = angular.element('<a data-legacy-link="/foo"></a>');
-    element = $compile(element)(scope);
+    compile = $compile;
   }));
 
   it('assigns the value to the href', function() {
-    expect(element.attr('href')).to.eq('/foo');
+    expect(createLegacyLink()).to.have.attr('href', '/foo');
   });
 
-  it('goes to the specified location on click', inject(function($window) {
-    var assign = sinon.stub($window.location, 'assign');
-    element.click();
-    expect(assign).to.have.been.calledOnce;
-    expect(assign).to.have.been.calledWithMatch(/\/foo$/);
-    $window.location.assign.restore();
-  }));
+  it('assigns _self to the target, only if it doesn\'t already exist', function() {
+    expect(createLegacyLink()).to.have.attr('target', '_self');
+    expect(createLegacyLink({ target: '_blank' })).to.have.attr('target', '_blank');
+  });
+
 });

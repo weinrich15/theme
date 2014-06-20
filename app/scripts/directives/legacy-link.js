@@ -6,7 +6,7 @@ angular.module('volusion.directives').directive('legacyLink', [function() {
     link: function(scope, element, attrs) {
       element.attr({
         href: attrs.legacyLink,
-        onclick: 'return !!window.location.assign(this.href)'
+        target: element.attr('target') || '_self'
       });
     }
   };
