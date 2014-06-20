@@ -1,7 +1,7 @@
 'use strict';
 
 // ReSharper disable WrongExpressionStatement
-describe('Directive: legacyLink', function() {
+describe('Directive: legacyHref', function() {
 
   // load the directive's module
   beforeEach(module('volusion.directives'));
@@ -9,9 +9,9 @@ describe('Directive: legacyLink', function() {
   var scope;
   var compile;
 
-  function createLegacyLink(attrs) {
+  function createLegacyHref(attrs) {
     var element = angular.element('<a/>').attr(angular.extend({
-      'data-legacy-link': '/foo'
+      'data-legacy-href': '/foo'
     }, attrs || {}));
     return compile(element)(scope);
   }
@@ -22,12 +22,12 @@ describe('Directive: legacyLink', function() {
   }));
 
   it('assigns the value to the href', function() {
-    expect(createLegacyLink()).to.have.attr('href', '/foo');
+    expect(createLegacyHref()).to.have.attr('href', '/foo');
   });
 
   it('assigns _self to the target, only if it doesn\'t already exist', function() {
-    expect(createLegacyLink()).to.have.attr('target', '_self');
-    expect(createLegacyLink({ target: '_blank' })).to.have.attr('target', '_blank');
+    expect(createLegacyHref()).to.have.attr('target', '_self');
+    expect(createLegacyHref({ target: '_blank' })).to.have.attr('target', '_blank');
   });
 
 });
