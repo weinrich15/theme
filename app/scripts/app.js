@@ -4,7 +4,7 @@ var angular = require('angular');
 
 angular.module('volusion.controllers', ['ngSanitize', 'ui.router', 'volusion.services']);
 angular.module('volusion.directives', []);
-angular.module('volusion.filters', ['volusion.services']);
+angular.module('volusion.filters', ['ngSanitize', 'volusion.services']);
 angular.module('volusion.services', ['ngCookies', 'ngResource', 'pascalprecht.translate', 'services.config']);
 
 angular.module('volusionApp', [
