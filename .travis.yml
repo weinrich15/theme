@@ -15,3 +15,12 @@ notifications:
 
 before_install:
   - npm install -g grunt-cli
+
+#after_success:
+#  - grunt build
+#  - chmod +x deploy.sh
+#  - ./deploy.sh
+
+#env:
+#  global:
+#    secure: <http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables>

@@ -63,6 +63,25 @@ Switched to branch 'my-theme'
 ```
 
 
+## Deploy
+
+Volusion AngularJS themes use [the instructions and deploy script supplied here](https://github.com/X1011/git-directory-deploy).
+To deploy your own themes, you will need to uncomment the commented-out blocks in the
+[.travis.yml file](https://github.com/volusion-angular/theme/blob/master/.travis.yml)
+and provide an encrypted [GitHub access token for command-line use](https://help.github.com/articles/creating-an-access-token-for-command-line-use).
+To do this the easy way, you will need [Ruby installed](https://www.ruby-lang.org/en/downloads/).
+
+```sh
+gem install travis
+cd my_theme
+travis encrypt GITHUB_TOKEN=super_secret --add
+```
+
+The `super_secret` should be replaced with the GitHub access token mentioned above.
+
+More details can be found on the [Travic CI docs](http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables).
+
+
 ## License
 
 TBD © [Volusion, Inc.](http://www.volusion.com/)
